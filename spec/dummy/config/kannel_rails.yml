@@ -3,6 +3,7 @@ development: &dev
   username: kannel
   password: rails
   dlr_url: localhost:3000
+  dlr_mask: 31
   api_secret: test
 
 test:
