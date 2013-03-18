@@ -9,9 +9,9 @@ module KannelRails
   def self.send_message(recipient, message, sender=nil, dlr_url=nil)
     request_url = config.kannel_url.chomp('/') + "/cgi-bin/sendsms?" +
         "username=#{CGI.escape(config.username.to_s)}&password=#{CGI.escape(config.password.to_s)}" +
-        "&to=#{CGI.escape(recipient.to_s)}&text=#{CGI.escape(message.to_s)}&dlr-mask=#{CGI.escape(config.dlr_mask.to_s)}"
+        "&to=#{CGI.escape(recipient.to_s)}&text=#{CGI.escape(message.to_s)}"
     request_url += "&from=#{CGI.escape(sender.to_s)}" if sender
-    request_url += "&dlr-url=#{CGI.escape(dlr_url.to_s)}" if dlr_url
+    request_url += "&dlr-mask=#{CGI.escape(config.dlr_mask.to_s)}&dlr-url=#{CGI.escape(dlr_url.to_s)}" if dlr_url
 
     response = Net::HTTP.get_response(URI.parse(
                                           request_url
